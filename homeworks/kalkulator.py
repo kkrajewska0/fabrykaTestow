@@ -18,7 +18,7 @@ print('3.Mnożenie')
 print('4.Dzielenie')
 
 while True:
-    choice = input('Wybierz operację(1/2/3/4): ')
+    choice = input('Wybierz operację (1/2/3/4): ')
 
     if choice in ('1', '2', '3', '4'):
         num1 = float(input('Podaj pierwszą liczbę: '))
