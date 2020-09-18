@@ -1,0 +1,267 @@
+https://www.postman.com/collections/68afed2aa72535ec624f
+
+{
+	"info": {
+		"_postman_id": "5032319d-824f-43a9-ba18-9d151d2f368e",
+		"name": "TAPS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Check /posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e267ebd6-e7c0-4cfa-9b0e-8f72f9852085",
+						"exec": [
+							"console.log(pm.environment.get(\"post\"));\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"title\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"body\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/posts/{{post}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"{{post}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check /comments",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "40eed502-55cc-40df-b95b-8b54ea75c423",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "63e214d9-037c-4d7b-bb1b-b114bbe95237",
+						"exec": [
+							"console.log(pm.environment.get(\"post\"));\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"body\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"postId\")\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{url}}/comments/{{post}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"comments",
+						"{{post}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete /posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11feb657-9376-4b8a-a437-ae0c5a4da2eb",
+						"exec": [
+							"console.log(pm.environment.get(\"post\"));\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"{}\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/{{post}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"{{post}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add /comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4f80e47-8622-4d62-b4f1-5ea2711519a8",
+						"exec": [
+							"console.log(pm.environment.get(\"post\"));\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"content\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"userId\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"new\",\r\n  \"userId\": \"40\",\r\n  \"content\": \"Hello world\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/comments",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit /comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20ad0263-a7c9-43f2-90c5-b1cdebe10d8f",
+						"exec": [
+							"console.log(pm.environment.get(\"post\"));\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"user\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"User\": \"Peter\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/posts/{{post}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"{{post}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
