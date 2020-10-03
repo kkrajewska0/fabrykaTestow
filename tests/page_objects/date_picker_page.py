@@ -16,7 +16,7 @@ def send_correct_date(driver_instance):
     wait_for_visibility_of_element(driver_instance, input_date, time_to_wait=1)
     elem = driver_instance.find_element_by_id(input_date)
     elem.send_keys('2020')
-    value = '2020'
+    value = '2020-02-20'
     if value == elem.get_attribute("value"):
         return True
     else:
