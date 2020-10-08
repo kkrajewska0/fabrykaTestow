@@ -19,7 +19,7 @@ def key_presses_content_visible(driver_instance):
 
 
 def key_presses_tab2(driver_instance):
-    wait_for_visibility_of_element_by_id(driver_instance, key_presses_input)
+    wait_for_visibility_of_element(driver_instance, key_presses_input)
     elem = driver_instance.find_element_by_id(key_presses_input)
     elem.send_keys(Keys.ENTER)
     result = driver_instance.find_element_by_id(result_key).get_attribute("outerHTML")
